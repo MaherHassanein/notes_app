@@ -12,15 +12,11 @@ class NotesViewsBody extends StatelessWidget {
       child: Column(
         children: [
           SizedBox(
-            height: 50,
+            height: 45,
           ),
           CustomAppBar(),
           Expanded(
             child: CustomListView(),
-          ),
-          FloatingActionButton(
-            onPressed: () {},
-            child: Icon(Icons.plus_one),
           ),
         ],
       ),

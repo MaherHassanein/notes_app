@@ -32,7 +32,7 @@ class CustomItem extends StatelessWidget {
                 'Build your Career with Maher Hassanein',
                 style: TextStyle(
                   color: Colors.black.withOpacity(0.5),
-                  fontSize: 21,
+                  fontSize: 20,
                 ),
               ),
             ),
