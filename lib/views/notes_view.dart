@@ -15,7 +15,17 @@ class NotesViews extends StatelessWidget {
                   borderRadius: BorderRadius.circular(24)),
               context: context,
               builder: (context) {
-                return AddNoteButtom();
+                return Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 12),
+                  child: Column(
+                    children: [
+                      SizedBox(
+                        height: 30,
+                      ),
+                      AddNoteButtom(),
+                    ],
+                  ),
+                );
               });
         },
         child: Icon(Icons.add),
