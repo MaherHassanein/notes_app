@@ -7,6 +7,19 @@ class AddNoteButtom extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CustomTextField();
+    return Column(
+      children: [
+        CustomTextField(
+          hint: 'Title',
+        ),
+        SizedBox(
+          height: 15,
+        ),
+        CustomTextField(
+          hint: 'Content',
+          maxlines: 5,
+        ),
+      ],
+    );
   }
 }
