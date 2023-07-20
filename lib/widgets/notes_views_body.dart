@@ -15,7 +15,7 @@ class NotesViewsBody extends StatelessWidget {
             height: 45,
           ),
           CustomAppBar(
-            icon: Icons.delete,
+            icon: Icons.search,
             title: 'Notes',
           ),
           Expanded(
