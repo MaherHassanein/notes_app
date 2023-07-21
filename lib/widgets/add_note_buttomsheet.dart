@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:notes_app/modal/notes_modal.dart';
 import 'package:notes_app/widgets/custom_textbuttom.dart';
 import 'package:notes_app/widgets/custom_textfield.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -20,10 +21,11 @@ class _AddNoteButtomState extends State<AddNoteButtom> {
 
   @override
   Widget build(BuildContext context) {
-    return Form(
-      key: formkey,
-      autovalidateMode: autovalidateMode,
-      child: SingleChildScrollView(
+    return BlocProvider(
+      create: (context) => AddnoteCubit(),
+      child: Form(
+        key: formkey,
+        autovalidateMode: autovalidateMode,
         child: BlocConsumer<AddnoteCubit, AddnoteState>(
           listener: (context, state) {
             if (state is AddnoteLoading) {
@@ -37,38 +39,47 @@ class _AddNoteButtomState extends State<AddNoteButtom> {
           builder: (context, state) {
             return ModalProgressHUD(
               inAsyncCall: isloading,
-              child: Column(
-                children: [
-                  CustomTextField(
-                    onsaved: (data) {
-                      title = data;
-                    },
-                    hint: 'Title',
-                  ),
-                  SizedBox(
-                    height: 15,
-                  ),
-                  CustomTextField(
-                    onsaved: (data) {
-                      subtitle = data;
-                    },
-                    hint: 'Content',
-                    maxlines: 6,
-                  ),
-                  SizedBox(
-                    height: 90,
-                  ),
-                  CustomTextButtom(
-                    ontap: () {
-                      if (formkey.currentState!.validate()) {
-                        formkey.currentState!.save();
-                      } else {
-                        autovalidateMode = AutovalidateMode.always;
-                        setState(() {});
-                      }
-                    },
-                  ),
-                ],
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    CustomTextField(
+                      onsaved: (data) {
+                        title = data;
+                      },
+                      hint: 'Title',
+                    ),
+                    SizedBox(
+                      height: 15,
+                    ),
+                    CustomTextField(
+                      onsaved: (data) {
+                        subtitle = data;
+                      },
+                      hint: 'Content',
+                      maxlines: 6,
+                    ),
+                    SizedBox(
+                      height: 90,
+                    ),
+                    CustomTextButtom(
+                      ontap: () {
+                        if (formkey.currentState!.validate()) {
+                          formkey.currentState!.save();
+                          var notesmodal = NotesModal(
+                              title: title!,
+                              subtitle: subtitle!,
+                              date: DateTime.now().toString(),
+                              color: Colors.blue.value);
+                          BlocProvider.of<AddnoteCubit>(context)
+                              .addNotes(notesmodal);
+                        } else {
+                          autovalidateMode = AutovalidateMode.always;
+                          setState(() {});
+                        }
+                      },
+                    ),
+                  ],
+                ),
               ),
             );
           },
