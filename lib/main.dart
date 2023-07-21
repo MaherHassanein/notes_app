@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:notes_app/add_note_cubit/cubit/addnote_cubit.dart';
 import 'package:notes_app/costant/costant.dart';
 import 'package:notes_app/modal/notes_modal.dart';
 import 'package:notes_app/simples/simple_bloc_observer.dart';
