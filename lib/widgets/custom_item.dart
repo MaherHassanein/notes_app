@@ -14,7 +14,9 @@ class CustomItem extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(builder: (context) {
-            return EditNote();
+            return EditNote(
+              note1: note,
+            );
           }),
         );
       },
